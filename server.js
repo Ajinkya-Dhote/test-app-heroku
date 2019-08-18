@@ -14,6 +14,33 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+app,post('/webhooks', function(request, response) => {
+    response.setHeader('Content-Type', 'application/json');
+    let result = "";
+    let resObj = {
+        "fulfillmentText": "This is a text response",
+        "fulfillmentMessages": [
+            "text": {
+                "text": "Hi am i am from webhook"
+            },
+         "payload": {
+  "google": {
+    "expectUserResponse": true,
+    "richResponse": {
+      "items": [
+        {
+          "simpleResponse": {
+            "textToSpeech": "this is a simple response from webhook"
+          }
+        }
+      ]
+    }
+  }
+}
+        ]
+    }
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
