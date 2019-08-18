@@ -13,14 +13,49 @@ app.get('/', function(request, response) {
     response.render('pages/index');
 });
 
+app.get('/system-usage', function(request, response) {
+
+    return response.json(readFile());
+
+})
+
+app.post('/system-usage', function(request, response) {
+    const fs = require('fs');
+    console.log(request.query.systemUsage);
+    fs.writeFile("system-usage", request.query.systemUsage, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    });
+
+    let res = {
+        "result": "success"
+    }
+    return response.json(res);
+})
+
+function readFile() {
+    const fs = require('fs');
+    let content = fs.readFileSync("system-usage").toString();
+    let result = {
+        "system-usage": content
+    }
+    return result;
+}
+
 app.post('/webhooks', function(request, response) {
+    let data = readFile();
+    let usage = request.body.queryresult.parameters['usage'];
+    console.log(usage);
+    let speach = `Current System usage is ${data['system-usage']}%`;
     response.setHeader('Content-Type', 'application/json');
     let result = "";
     let resObj = {
         "fulfillmentText": "This is a text response",
         "fulfillmentMessages": [{
             "text": {
-                "text": ["Hi am i am from webhook"]
+                "text": [speach]
             }
         }],
         "payload": {
@@ -29,7 +64,7 @@ app.post('/webhooks', function(request, response) {
                 "richResponse": {
                     "items": [{
                         "simpleResponse": {
-                            "textToSpeech": "this is a simple response from webhook"
+                            "textToSpeech": speach
                         }
                     }]
                 }
