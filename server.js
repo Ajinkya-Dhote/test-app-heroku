@@ -152,7 +152,7 @@ function getSystemUsage() {
 function getTopRunningProcess() {
     let speach = readTopProcess();
     let resObj = {
-        "fulfillmentText": " ",
+        "fulfillmentText": speach,
         "fulfillmentMessages": [{
             "text": {
                 "text": [speach]
@@ -169,11 +169,11 @@ function getTopRunningProcess() {
                             "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
                             "formatted_text": speach
 
+                        },
+                        "simpleResponse": {
+                            "textToSpeech": "Here are top 5 Process by CPU and Memory Usage",
+                            "textToDisplay": speach
                         }
-                        // "simpleResponse": {
-                        //     "textToSpeech": "Here are top 5 Process by CPU and Memory Usage",
-                        //     "textToDisplay": speach
-                        // }
                     }]
                 }
             }
