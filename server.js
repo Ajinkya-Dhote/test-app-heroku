@@ -63,12 +63,27 @@ app.post('/webhooks', function(request, response) {
     let data = readFile();
     console.log(request.body);
     let usage = request.body.queryResult.parameters['usage'];
-    console.log(usage);
-    let speach = `Current System usage is ${data['system-usage']}%`;
-    response.setHeader('Content-Type', 'application/json');
-    let result = "";
+    let process = request.body.queryResult.parameters['process'];
+
+    let resObj = getDefaultResponse();
+
+    if (usage && (usage === 'cpu' || usage === 'memory')) {
+        resObj = getSystemUsage();
+    } else if (process && process === 'process') {
+        resObj = getTopRunningProcess();
+    }
+
+    return response.json(resObj);
+});
+
+app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+});
+
+function getDefaultResponse() {
+    let speach = "Sorry I didn't understand."
     let resObj = {
-        "fulfillmentText": "This is a text response",
+        "fulfillmentText": speach,
         "fulfillmentMessages": [{
             "text": {
                 "text": [speach]
@@ -88,9 +103,55 @@ app.post('/webhooks', function(request, response) {
         },
         "source": ""
     };
-    return response.json(resObj);
-});
+    return restObj;
+}
 
-app.listen(app.get('port'), function() {
-    console.log('Node app is running on port', app.get('port'));
-});
+function getSystemUsage() {
+    console.log(usage);
+    let speach = `Current System usage is ${data['system-usage']}%`;
+    response.setHeader('Content-Type', 'application/json');
+    let result = "";
+    let resObj = {
+        "fulfillmentText": " ",
+        "fulfillmentMessages": [{
+            "text": {
+                "text": [speach]
+            }
+        }],
+        "payload": {
+            "google": {
+                "expectUserResponse": true,
+                "richResponse": {
+                    "items": [{
+                        "simpleResponse": {
+                            "textToSpeech": speach
+                        }
+                    }]
+                }
+            }
+        },
+        "source": ""
+    };
+    return restObj;
+}
+
+function getTopRunningProcess() {
+    let speach = "top apps are chrome and firefox"
+    let resObj = {
+        "fulfillmentText": " ",
+        "fulfillmentMessages": [{
+            "basic_card	": {
+                "title": "Top 5 process",
+                "subtitle": "By CPU and Memory Usage",
+                "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+                "formatted_text": speach
+
+            },
+            "simpleResponse": {
+                "textToSpeech": "Here are top 5 Process by CPU and Memory Usage"
+            }
+        }],
+        "source": ""
+    };
+    return restObj;
+}
