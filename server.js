@@ -188,26 +188,18 @@ function getTopRunningProcess() {
         "items": [
           {
             "simpleResponse": {
-              "textToSpeech": "This is a basic card example."
+              "textToSpeech": "Here are Top Running Process"
             }
           },
           {
             "basicCard": {
-              "title": "Title: this is a title",
-              "subtitle": "This is a subtitle",
-              "formattedText": "This is a basic card.  Text in a basic card can include \"quotes\" and\n        most other unicode characters including emoji 📱.  Basic cards also support\n        some markdown formatting like *emphasis* or _italics_, **strong** or\n        __bold__, and ***bold itallic*** or ___strong emphasis___ as well as other\n        things like line  \nbreaks",
+              "title": "Top PROCESSING",
+              "subtitle": "Base on Memory and CPU Usage",
+              "formattedText": speach,
               "image": {
-                "url": "http://ajinkyadhote.in/avtar.jpgg",
-                "accessibilityText": "Image alternate text"
-              },
-              "buttons": [
-                {
-                  "title": "This is a button",
-                  "openUrlAction": {
-                    "url": "https://assistant.google.com/"
-                  }
-                }
-              ],
+                "url": "http://ajinkyadhote.in/avtar.jpg",
+                "accessibilityText": "Ajinkya"
+              }
               "imageDisplayOptions": "CROPPED"
             }
           }
