@@ -13,6 +13,21 @@ app.get('/', function(request, response) {
     response.render('pages/index');
 });
 
+const bodyParser = require("body-parser");
+
+/** bodyParser.urlencoded(options)
+ * Parses the text as URL encoded data (which is how browsers tend to send form data from regular forms set to POST)
+ * and exposes the resulting object (containing the keys and values) on req.body
+ */
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+/**bodyParser.json(options)
+ * Parses the text as JSON and exposes the resulting object on req.body.
+ */
+app.use(bodyParser.json());
+
 app.get('/system-usage', function(request, response) {
 
     return response.json(readFile());
@@ -46,7 +61,7 @@ function readFile() {
 
 app.post('/webhooks', function(request, response) {
     let data = readFile();
-    console.log(request);
+    console.log(request.body);
     let usage = request.body.queryResult.parameters['usage'];
     console.log(usage);
     let speach = `Current System usage is ${data['system-usage']}%`;
