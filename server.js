@@ -82,7 +82,7 @@ app.post('/webhooks', function(request, response) {
     response.setHeader('Content-Type', 'application/json');
     let resObj = getDefaultResponse();
 
-    if (usage && (usage === 'cpu' || usage === 'memory')) {
+    if (usage && (usage === 'cpu' || usage === 'CPU'|| usage === 'memory')) {
         resObj = getSystemUsage();
     } else if (process && process !== '') {
         resObj = getTopRunningProcess();
