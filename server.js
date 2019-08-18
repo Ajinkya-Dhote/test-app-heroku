@@ -107,7 +107,6 @@ function getDefaultResponse() {
 }
 
 function getSystemUsage() {
-    console.log(usage);
     let speach = `Current System usage is ${data['system-usage']}%`;
     response.setHeader('Content-Type', 'application/json');
     let result = "";
