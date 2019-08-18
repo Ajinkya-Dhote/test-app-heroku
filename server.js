@@ -69,7 +69,7 @@ app.post('/webhooks', function(request, response) {
 
     if (usage && (usage === 'cpu' || usage === 'memory')) {
         resObj = getSystemUsage();
-    } else if (process && process === 'process') {
+    } else if (process && process !== '') {
         resObj = getTopRunningProcess();
     }
 
@@ -103,7 +103,7 @@ function getDefaultResponse() {
         },
         "source": ""
     };
-    return restObj;
+    return resObj;
 }
 
 function getSystemUsage() {
@@ -132,7 +132,7 @@ function getSystemUsage() {
         },
         "source": ""
     };
-    return restObj;
+    return resObj;
 }
 
 function getTopRunningProcess() {
@@ -153,5 +153,5 @@ function getTopRunningProcess() {
         }],
         "source": ""
     };
-    return restObj;
+    return resObj;
 }
