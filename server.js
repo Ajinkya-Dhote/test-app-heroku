@@ -96,7 +96,7 @@ app.listen(app.get('port'), function() {
 });
 
 function getDefaultResponse() {
-    let speach = "Sorry I didn't understand. Ask me to Know the System usgae or to know about top running process"
+    let speach = "Sorry I didn't understand. Ask me to Know the System usage or to know about top running process"
     let resObj = {
         "payload": {
             "google": {
@@ -110,8 +110,8 @@ function getDefaultResponse() {
                     {
                         "basicCard": {
                             "title": "Raspberry PI",
-                            "subtitle": "Know thw running status of your Raspberry PI",
-                            "formattedText": "You can ask for \n 1. CPU Usage. \n 2. System Usage. \n 3. Top Running Process on your PI",
+                            "subtitle": "Know top running status of your Raspberry PI",
+                            "formattedText": "You can ask for  \n 1. CPU Usage.  \n 2. System Usage.  \n 3. Top Running Process on your PI",
                             "image": {
                                 "url": "https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001.png",
                                 "accessibilityText": "Rasp PI"
