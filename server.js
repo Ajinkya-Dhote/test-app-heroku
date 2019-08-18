@@ -135,19 +135,12 @@ function getSystemUsage() {
 }
 
 function getTopRunningProcess() {
-    let speach = "top apps are chrome and firefox"
+    let speach = readTopProcess();
     let resObj = {
         "fulfillmentText": " ",
         "fulfillmentMessages": [{
-            "basic_card": {
-                "title": "Top 5 process",
-                "subtitle": "By CPU and Memory Usage",
-                "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-                "formatted_text": speach
-
-            },
-            "simpleResponse": {
-                "textToSpeech": "Here are top 5 Process by CPU and Memory Usage"
+            "text": {
+                "text": [speach]
             }
         }],
         "payload": {
@@ -163,7 +156,8 @@ function getTopRunningProcess() {
 
                         },
                         "simpleResponse": {
-                            "textToSpeech": "Here are top 5 Process by CPU and Memory Usage"
+                            "textToSpeech": "Here are top 5 Process by CPU and Memory Usage",
+                            "textToDisplay": speech
                         }
                     }]
                 }
@@ -172,4 +166,10 @@ function getTopRunningProcess() {
         "source": ""
     };
     return resObj;
+}
+
+function readTopProcess() {
+    const fs = require('fs');
+    let content = fs.readFileSync("top-process").toString();
+    return content;
 }
