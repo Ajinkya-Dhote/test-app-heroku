@@ -20,7 +20,7 @@ app.post('/webhooks', function(request, response) {
         "fulfillmentText": "This is a text response",
         "fulfillmentMessages": [{
             "text": {
-                "text": "Hi am i am from webhook"
+                "text": ["Hi am i am from webhook"]
             }
         }],
         "payload": {
