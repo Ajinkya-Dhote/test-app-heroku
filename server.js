@@ -172,7 +172,7 @@ function getTopRunningProcess() {
                         },
                         "simpleResponse": {
                             "textToSpeech": "Here are top 5 Process by CPU and Memory Usage",
-                            "textToDisplay": speech
+                            "textToDisplay": speach
                         }
                     }]
                 }
