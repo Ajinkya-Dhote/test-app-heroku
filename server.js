@@ -151,35 +151,71 @@ function getSystemUsage() {
 
 function getTopRunningProcess() {
     let speach = readTopProcess();
+    // let resObj = {
+    //     "fulfillmentText": speach,
+    //     "fulfillmentMessages": [{
+    //         "text": {
+    //             "text": [speach]
+    //         }
+    //     }],
+    //     "payload": {
+    //         "google": {
+    //             "expectUserResponse": true,
+    //             "richResponse": {
+    //                 "items": [{
+    //                     "basic_card": {
+    //                         "title": "Top 5 process",
+    //                         "subtitle": "By CPU and Memory Usage",
+    //                         "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+    //                         "formatted_text": speach
+    //
+    //                     },
+    //                     "simpleResponse": {
+    //                         "textToSpeech": "Here are top 5 Process by CPU and Memory Usage",
+    //                         "textToDisplay": speach
+    //                     }
+    //                 }]
+    //             }
+    //         }
+    //     },
+    //     "source": ""
+    // };
     let resObj = {
-        "fulfillmentText": speach,
-        "fulfillmentMessages": [{
-            "text": {
-                "text": [speach]
+  "payload": {
+    "google": {
+      "expectUserResponse": true,
+      "richResponse": {
+        "items": [
+          {
+            "simpleResponse": {
+              "textToSpeech": "This is a basic card example."
             }
-        }],
-        "payload": {
-            "google": {
-                "expectUserResponse": true,
-                "richResponse": {
-                    "items": [{
-                        "basic_card": {
-                            "title": "Top 5 process",
-                            "subtitle": "By CPU and Memory Usage",
-                            "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-                            "formatted_text": speach
-
-                        },
-                        "simpleResponse": {
-                            "textToSpeech": "Here are top 5 Process by CPU and Memory Usage",
-                            "textToDisplay": speach
-                        }
-                    }]
+          },
+          {
+            "basicCard": {
+              "title": "Title: this is a title",
+              "subtitle": "This is a subtitle",
+              "formattedText": "This is a basic card.  Text in a basic card can include \"quotes\" and\n        most other unicode characters including emoji 📱.  Basic cards also support\n        some markdown formatting like *emphasis* or _italics_, **strong** or\n        __bold__, and ***bold itallic*** or ___strong emphasis___ as well as other\n        things like line  \nbreaks",
+              "image": {
+                "url": "http://ajinkyadhote.in/avtar.jpgg",
+                "accessibilityText": "Image alternate text"
+              },
+              "buttons": [
+                {
+                  "title": "This is a button",
+                  "openUrlAction": {
+                    "url": "https://assistant.google.com/"
+                  }
                 }
+              ],
+              "imageDisplayOptions": "CROPPED"
             }
-        },
-        "source": ""
-    };
+          }
+        ]
+      }
+    }
+  }
+}
     return resObj;
 }
 
