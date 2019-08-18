@@ -137,19 +137,19 @@ function getSystemUsage() {
 function getTopRunningProcess() {
     let speach = "top apps are chrome and firefox"
     let resObj = {
-        "fulfillmentText": speach,
-        "fulfillmentMessages": [{
-            "basic_card": {
-                "title": "Top 5 process",
-                "subtitle": "By CPU and Memory Usage",
-                "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-                "formatted_text": speach
-
-            },
-            "simpleResponse": {
-                "textToSpeech": "Here are top 5 Process by CPU and Memory Usage"
-            }
-        }],
+        // "fulfillmentText": speach,
+        // "fulfillmentMessages": [{
+        //     "basic_card": {
+        //         "title": "Top 5 process",
+        //         "subtitle": "By CPU and Memory Usage",
+        //         "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+        //         "formatted_text": speach
+        //
+        //     },
+        //     "simpleResponse": {
+        //         "textToSpeech": "Here are top 5 Process by CPU and Memory Usage"
+        //     }
+        // }],
         "payload": {
             "google": {
                 "expectUserResponse": true,
