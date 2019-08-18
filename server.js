@@ -202,7 +202,7 @@ function getTopRunningProcess() {
                                 "subtitle": "Base on Memory and CPU Usage",
                                 "formattedText": speach,
                                 "image": {
-                                    "url": "http://ajinkyadhote.in/avtar.jpg",
+                                    "url": "https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001.png",
                                     "accessibilityText": "Ajinkya"
                                 },
                                 "imageDisplayOptions": "CROPPED"
