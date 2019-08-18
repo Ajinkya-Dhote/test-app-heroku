@@ -60,7 +60,7 @@ function readFile() {
 }
 
 app.post('/webhooks', function(request, response) {
-    let data = readFile();
+
     console.log(request.body);
     let usage = request.body.queryResult.parameters['usage'];
     let process = request.body.queryResult.parameters['process'];
@@ -107,6 +107,7 @@ function getDefaultResponse() {
 }
 
 function getSystemUsage() {
+    let data = readFile();
     let speach = `Current System usage is ${data['system-usage']}%`;
     response.setHeader('Content-Type', 'application/json');
     let result = "";
@@ -139,7 +140,7 @@ function getTopRunningProcess() {
     let resObj = {
         "fulfillmentText": " ",
         "fulfillmentMessages": [{
-            "basic_card	": {
+            "basic_card": {
                 "title": "Top 5 process",
                 "subtitle": "By CPU and Memory Usage",
                 "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
