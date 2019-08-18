@@ -46,6 +46,7 @@ function readFile() {
 
 app.post('/webhooks', function(request, response) {
     let data = readFile();
+    console.log(request);
     let usage = request.body.queryResult.parameters['usage'];
     console.log(usage);
     let speach = `Current System usage is ${data['system-usage']}%`;
