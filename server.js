@@ -50,6 +50,21 @@ app.post('/system-usage', function(request, response) {
     return response.json(res);
 })
 
+app.post('/top-process', function(request, response) {
+    const fs = require('fs');
+    fs.writeFile("top-process", request.body.process, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    });
+
+    let res = {
+        "result": "success"
+    }
+    return response.json(res);
+});
+
 function readFile() {
     const fs = require('fs');
     let content = fs.readFileSync("system-usage").toString();
