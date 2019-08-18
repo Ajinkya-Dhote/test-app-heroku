@@ -181,33 +181,32 @@ function getTopRunningProcess() {
     //     "source": ""
     // };
     let resObj = {
-  "payload": {
-    "google": {
-      "expectUserResponse": true,
-      "richResponse": {
-        "items": [
-          {
-            "simpleResponse": {
-              "textToSpeech": "Here are Top Running Process"
+        "payload": {
+            "google": {
+                "expectUserResponse": true,
+                "richResponse": {
+                    "items": [{
+                            "simpleResponse": {
+                                "textToSpeech": "Here are Top Running Process"
+                            }
+                        },
+                        {
+                            "basicCard": {
+                                "title": "Top PROCESSING",
+                                "subtitle": "Base on Memory and CPU Usage",
+                                "formattedText": speach,
+                                "image": {
+                                    "url": "http://ajinkyadhote.in/avtar.jpg",
+                                    "accessibilityText": "Ajinkya"
+                                },
+                                "imageDisplayOptions": "CROPPED"
+                            }
+                        }
+                    ]
+                }
             }
-          },
-          {
-            "basicCard": {
-              "title": "Top PROCESSING",
-              "subtitle": "Base on Memory and CPU Usage",
-              "formattedText": speach,
-              "image": {
-                "url": "http://ajinkyadhote.in/avtar.jpg",
-                "accessibilityText": "Ajinkya"
-              }
-              "imageDisplayOptions": "CROPPED"
-            }
-          }
-        ]
-      }
+        }
     }
-  }
-}
     return resObj;
 }
 
