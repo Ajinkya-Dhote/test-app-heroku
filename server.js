@@ -67,7 +67,7 @@ app.post('/top-process', function(request, response) {
 
 app.post('/ip', function(request, response) {
     const fs = require('fs');
-    fs.writeFile("ip", request.body.process, function(err) {
+    fs.writeFile("ip", request.query.ip, function(err) {
         if (err) {
             return console.log(err);
         }
