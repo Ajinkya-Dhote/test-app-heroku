@@ -65,6 +65,21 @@ app.post('/top-process', function(request, response) {
     return response.json(res);
 });
 
+app.post('/ip', function(request, response) {
+    const fs = require('fs');
+    fs.writeFile("ip", request.body.process, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    });
+
+    let res = {
+        "result": "success"
+    }
+    return response.json(res);
+})
+
 function readFile() {
     const fs = require('fs');
     let content = fs.readFileSync("system-usage").toString();
@@ -79,13 +94,16 @@ app.post('/webhooks', function(request, response) {
     console.log(request.body);
     let usage = request.body.queryResult.parameters['usage'];
     let process = request.body.queryResult.parameters['process'];
+    let ip = request.body.queryResult.parameters['ip'];
     response.setHeader('Content-Type', 'application/json');
     let resObj = getDefaultResponse();
 
-    if (usage && (usage === 'cpu' || usage === 'CPU'|| usage === 'memory')) {
+    if (usage && usage !== '') {
         resObj = getSystemUsage();
     } else if (process && process !== '') {
         resObj = getTopRunningProcess();
+    } else (ip & ip !== '') {
+        resObj = getPiIp();
     }
 
     return response.json(resObj);
@@ -96,7 +114,7 @@ app.listen(app.get('port'), function() {
 });
 
 function getDefaultResponse() {
-    let speach = "Sorry I didn't understand. Ask me to Know the System usage or to know about top running process"
+    let speach = "You can ask me to Know the System usage or to know about top running process"
     let resObj = {
         "payload": {
             "google": {
@@ -157,35 +175,6 @@ function getSystemUsage() {
 
 function getTopRunningProcess() {
     let speach = readTopProcess();
-    // let resObj = {
-    //     "fulfillmentText": speach,
-    //     "fulfillmentMessages": [{
-    //         "text": {
-    //             "text": [speach]
-    //         }
-    //     }],
-    //     "payload": {
-    //         "google": {
-    //             "expectUserResponse": true,
-    //             "richResponse": {
-    //                 "items": [{
-    //                     "basic_card": {
-    //                         "title": "Top 5 process",
-    //                         "subtitle": "By CPU and Memory Usage",
-    //                         "imageUri": "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-    //                         "formatted_text": speach
-    //
-    //                     },
-    //                     "simpleResponse": {
-    //                         "textToSpeech": "Here are top 5 Process by CPU and Memory Usage",
-    //                         "textToDisplay": speach
-    //                     }
-    //                 }]
-    //             }
-    //         }
-    //     },
-    //     "source": ""
-    // };
     let resObj = {
         "payload": {
             "google": {
@@ -219,5 +208,31 @@ function getTopRunningProcess() {
 function readTopProcess() {
     const fs = require('fs');
     let content = fs.readFileSync("top-process").toString();
+    return content;
+}
+
+function getPiIp() {
+    let speach = readPiIP();
+    let resObj = {
+        "payload": {
+            "google": {
+                "expectUserResponse": true,
+                "richResponse": {
+                    "items": [{
+                            "simpleResponse": {
+                                "textToSpeech": "The Ip of your Raspbery Pi device is " + speech
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+    return resObj;
+}
+
+function readPiIP() {
+    const fs = require('fs');
+    let content = fs.readFileSync("ip").toString();
     return content;
 }
