@@ -114,7 +114,7 @@ app.listen(app.get('port'), function() {
 });
 
 function getDefaultResponse() {
-    let speach = "You can ask me to Know the System usage or to know about top running process"
+    let speach = "You can ask me to Know the System usage, IP address or to know about top running process"
     let resObj = {
         "payload": {
             "google": {
@@ -222,7 +222,7 @@ function getPiIp() {
                 "richResponse": {
                     "items": [{
                             "simpleResponse": {
-                                "textToSpeech": "The Ip of your Raspbery Pi device is " + speach
+                                "textToSpeech": "The IP of your Raspbery Pi device is " + speach
                             }
                         }
                     ]
