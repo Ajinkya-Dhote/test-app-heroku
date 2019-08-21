@@ -102,7 +102,7 @@ app.post('/webhooks', function(request, response) {
         resObj = getSystemUsage();
     } else if (process && process !== '') {
         resObj = getTopRunningProcess();
-    } else if (ip & ip !== '') {
+    } else if (ip && ip !== '') {
         resObj = getPiIp();
     }
 
@@ -129,7 +129,7 @@ function getDefaultResponse() {
                         "basicCard": {
                             "title": "Raspberry PI",
                             "subtitle": "Know top running status of your Raspberry PI",
-                            "formattedText": "You can ask for  \n 1. CPU Usage.  \n 2. System Usage.  \n 3. Top Running Process on your PI",
+                            "formattedText": "You can ask for  \n 1. CPU Usage.  \n 2. Pi Ip Address.  \n 3. Top Running Process on your PI",
                             "image": {
                                 "url": "https://www.raspberrypi.org/wp-content/uploads/2011/10/Raspi-PGB001.png",
                                 "accessibilityText": "Rasp PI"
@@ -212,7 +212,9 @@ function readTopProcess() {
 }
 
 function getPiIp() {
+    console.log("reading ip");
     let speach = readPiIP();
+    console.log("reading ip :", speach);
     let resObj = {
         "payload": {
             "google": {
