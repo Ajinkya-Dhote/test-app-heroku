@@ -102,7 +102,7 @@ app.post('/webhooks', function(request, response) {
         resObj = getSystemUsage();
     } else if (process && process !== '') {
         resObj = getTopRunningProcess();
-    } else (ip & ip !== '') {
+    } else if (ip & ip !== '') {
         resObj = getPiIp();
     }
 
