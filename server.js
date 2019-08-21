@@ -91,7 +91,7 @@ function readFile() {
 
 app.post('/webhooks', function(request, response) {
 
-    console.log(request.body);
+    console.log(request.body.queryResult.parameters);
     let usage = request.body.queryResult.parameters['usage'];
     let process = request.body.queryResult.parameters['process'];
     let ip = request.body.queryResult.parameters['ip'];
@@ -220,7 +220,7 @@ function getPiIp() {
                 "richResponse": {
                     "items": [{
                             "simpleResponse": {
-                                "textToSpeech": "The Ip of your Raspbery Pi device is " + speech
+                                "textToSpeech": "The Ip of your Raspbery Pi device is " + speach
                             }
                         }
                     ]
